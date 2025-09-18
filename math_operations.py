@@ -24,4 +24,16 @@ def raiz_cuadrada_entera(x):
     while i * i <= x:
         i += 1
 
+
     return i - 1
+
+def sort_array(array):
+    
+    arr = array[:]  
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                # intercambiar
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    return arr
