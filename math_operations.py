@@ -43,3 +43,16 @@ def sum_elem_array(arr):
     for num in arr:
         total += num
     return total
+
+def sumar_matrices(a, b):
+    if len(a) != len(b) or len(a[0]) != len(b[0]):
+        raise ValueError("Las matrices deben tener las mismas dimensiones")
+
+    resultado = []
+    for i in range(len(a)):
+        fila = []
+        for j in range(len(a[0])):
+            fila.append(a[i][j] + b[i][j])
+        resultado.append(fila)
+
+    return resultado
