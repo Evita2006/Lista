@@ -2,9 +2,9 @@ import math_operations as mo
 
 def main():
     # Recursos disponibles
-    wood, total_wood = pedir_recursos("madera")
-    stone, total_stone = pedir_recursos("piedra")
-    money, total_money = pedir_recursos("dinero")
+    wood, total_wood =mo.pedir_recursos("madera")
+    stone, total_stone = mo.pedir_recursos("piedra")
+    money, total_money = mo.pedir_recursos("dinero")
 
     # Ordenar recursos
     sorted_wood = mo.sort_array(wood)
@@ -46,11 +46,10 @@ def main():
     for construccion, coste_unitario in costes.items():
         if cantidades[construccion] == 0:
             continue  # No mostrar construcciones que no se van a construir
-        coste_con_subvencion = aplicar_subvencion(coste_unitario, subvencion)
-        coste_total = calcular_coste_total(coste_con_subvencion, cantidades[construccion])
+        coste_con_subvencion = mo.aplicar_subvencion(coste_unitario, subvencion)
+        coste_total = mo.calcular_coste_total(coste_con_subvencion, cantidades[construccion])
         print(f"{construccion.capitalize()} (Cantidad: {cantidades[construccion]}): {coste_total}")
 
     print("\nSimulación completada ✅")
 
-if _name_ == "_main_":
-    main()
+main()
