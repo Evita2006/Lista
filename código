@@ -1,0 +1,40 @@
+import resource_management as rm
+
+def main():
+    # Recursos disponibles
+    wood = [20, 15, 30, 10]
+    stone = [25, 10, 20, 5]
+    money = [200, 150, 300, 100]
+
+    # Ordenar recursos
+    sorted_wood = rm.sort_array(wood)
+    sorted_stone = rm.sort_array(stone)
+    sorted_money = rm.sort_array(money)
+
+    # Sumar recursos
+    total_wood = rm.sum_elem_array(sorted_wood)
+    total_stone = rm.sum_elem_array(sorted_stone)
+    total_money = rm.sum_elem_array(sorted_money)
+
+    print(f"Recursos totales -> Wood: {total_wood}, Stone: {total_stone}, Money: {total_money}")
+
+    # Matrices de costes
+    house_cost = [[10, 5], [15, 10]]
+    school_cost = [[20, 25], [10, 30]]
+
+    # Subvención
+    subsidy = [[5, 5], [5, 5]]
+
+    # Calcular nuevos costes con la subvención
+    new_house_cost = rm.sumar_matrices(house_cost, subsidy)
+    new_school_cost = rm.sumar_matrices(school_cost, subsidy)
+
+    print(f"Costo de construcción de casas con subsidio: {new_house_cost}")
+    print(f"Costo de construcción de escuelas con subsidio: {new_school_cost}")
+
+    # Probar funciones extra
+    print("Ejemplo de potencia 2^5:", rm.potencia(2, 5))
+    print("Raíz cuadrada entera de 17:", rm.raiz_cuadrada_entera(17))
+    rm.modulo(0, 0)  # Pedirá input al usuario
+
+main()
