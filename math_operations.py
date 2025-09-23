@@ -56,3 +56,18 @@ def sumar_matrices(a, b):
         resultado.append(fila)
 
     return resultado
+
+def pedir_recursos(nombre):
+    cantidades = list(map(int, input(f"Ingresa las cantidades de {nombre} separadas por espacio: ").split()))
+    cantidades.sort()
+    total = sum(cantidades)
+    return cantidades, total
+
+def aplicar_subvencion(coste, subvencion):
+    """Aplica subvención a los costes de construcción."""
+    return sumar_matrices(coste, subvencion)
+
+def calcular_coste_total(coste_unitario, cantidad):
+    """Calcula el coste total multiplicando la matriz por la cantidad de construcciones."""
+    return [[elem * cantidad for elem in fila] for fila in coste_unitario]
+
