@@ -2,9 +2,9 @@ import math_operations as mo
 
 def main():
     # Recursos disponibles
-    wood = [20, 15, 30, 10]
-    stone = [25, 10, 20, 5]
-    money = [200, 150, 300, 100]
+    wood, total_wood = pedir_recursos("madera")
+    stone, total_stone = pedir_recursos("piedra")
+    money, total_money = pedir_recursos("dinero")
 
     # Ordenar recursos
     sorted_wood = mo.sort_array(wood)
@@ -18,18 +18,39 @@ def main():
 
     print(f"Recursos totales -> Wood: {total_wood}, Stone: {total_stone}, Money: {total_money}")
 
-    # Matrices de costes
-    house_cost = [[10, 5], [15, 10]]
-    school_cost = [[20, 25], [10, 30]]
+    # Matrices de costes unitarios
+    costes = {
+        "casas": [[10, 5], [15, 10]],
+        "escuelas": [[20, 25], [10, 30]],
+        "hospitales": [[50, 40], [30, 20]],
+        "parques": [[5, 5], [5, 5]]
+    }
 
-    # Subvención
-    subsidy = [[5, 5], [5, 5]]
+    # Subvención aplicada a todas las construcciones
+    subvencion = [[5, 5], [5, 5]]
 
-    # Calcular nuevos costes con la subvención
-    new_house_cost = mo.sumar_matrices(house_cost, subsidy)
-    new_school_cost = mo.sumar_matrices(school_cost, subsidy)
+    # Pedir al usuario cuántas construcciones quiere
+    cantidades = {}
+    for construccion in costes:
+        while True:
+            try:
+                cantidad = int(input(f"¿Cuántas {construccion} quieres construir? "))
+                if cantidad < 0:
+                    raise ValueError
+                cantidades[construccion] = cantidad
+                break
+            except ValueError:
+                print("Por favor, ingresa un número entero válido (>= 0).")
 
-    print(f"Costo de construcción de casas con subsidio: {new_house_cost}")
-    print(f"Costo de construcción de escuelas con subsidio: {new_school_cost}")
+    print("\n=== Resumen de costes con subvención aplicada ===\n")
+    for construccion, coste_unitario in costes.items():
+        if cantidades[construccion] == 0:
+            continue  # No mostrar construcciones que no se van a construir
+        coste_con_subvencion = aplicar_subvencion(coste_unitario, subvencion)
+        coste_total = calcular_coste_total(coste_con_subvencion, cantidades[construccion])
+        print(f"{construccion.capitalize()} (Cantidad: {cantidades[construccion]}): {coste_total}")
 
-main()
+    print("\nSimulación completada ✅")
+
+if _name_ == "_main_":
+    main()
