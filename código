@@ -32,9 +32,4 @@ def main():
     print(f"Costo de construcción de casas con subsidio: {new_house_cost}")
     print(f"Costo de construcción de escuelas con subsidio: {new_school_cost}")
 
-    # Probar funciones extra
-    print("Ejemplo de potencia 2^5:", mo.potencia(2, 5))
-    print("Raíz cuadrada entera de 17:", mo.raiz_cuadrada_entera(17))
-    mo.modulo(0, 0)  # Pedirá input al usuario
-
 main()
