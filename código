@@ -32,10 +32,10 @@ def main():
 
     # Tiempos de construcción (horas por un obrero para 1 estructura)
     tiempos = {
-        "casas": 10,
-        "escuelas": 20,
-        "hospitales": 50,
-        "parques": 5
+        "casas": 100,
+        "escuelas": 200,
+        "hospitales": 500,
+        "parques": 50
     }
 
     # Pedir al usuario cuántas construcciones quiere
@@ -77,6 +77,6 @@ def main():
     print(f"Tiempo total si cada obra solo tiene 1 obrero: {mo.simular_uno_por_obra(detalle, obreros):.2f} horas")
     print(f"Tiempo total si los obreros trabajan en parejas: {mo.simular_en_parejas(detalle, obreros):.2f} horas")
 
-    print("\nSimulación completada ✅")
+    print("\nSimulación completada")
 
 main()
