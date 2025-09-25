@@ -1,8 +1,9 @@
 import math_operations as mo
 
+
 def main():
     # Recursos disponibles
-    wood, total_wood =mo.pedir_recursos("madera")
+    wood, total_wood = mo.pedir_recursos("madera")
     stone, total_stone = mo.pedir_recursos("piedra")
     money, total_money = mo.pedir_recursos("dinero")
 
@@ -29,6 +30,14 @@ def main():
     # Subvención aplicada a todas las construcciones
     subvencion = [[5, 5], [5, 5]]
 
+    # Tiempos de construcción (horas por un obrero para 1 estructura)
+    tiempos = {
+        "casas": 10,
+        "escuelas": 20,
+        "hospitales": 50,
+        "parques": 5
+    }
+
     # Pedir al usuario cuántas construcciones quiere
     cantidades = {}
     for construccion in costes:
@@ -42,13 +51,31 @@ def main():
             except ValueError:
                 print("Por favor, ingresa un número entero válido (>= 0).")
 
+    # Pedir número de obreros
+    while True:
+        try:
+            obreros = int(input("\n¿Cuántos obreros trabajarán en el proyecto? "))
+            if obreros <= 0:
+                raise ValueError
+            break
+        except ValueError:
+            print("Por favor, ingresa un número entero válido (> 0).")
+
     print("\n=== Resumen de costes con subvención aplicada ===\n")
     for construccion, coste_unitario in costes.items():
         if cantidades[construccion] == 0:
-            continue  # No mostrar construcciones que no se van a construir
+            continue
         coste_con_subvencion = mo.aplicar_subvencion(coste_unitario, subvencion)
         coste_total = mo.calcular_coste_total(coste_con_subvencion, cantidades[construccion])
         print(f"{construccion.capitalize()} (Cantidad: {cantidades[construccion]}): {coste_total}")
+
+    # Cálculo de tiempos
+    total_tiempo, detalle = mo.calcular_tiempo_total(cantidades, tiempos, obreros)
+
+    print("\n=== Simulación de tiempos ===\n")
+    print(f"Tiempo total con obreros repartidos equitativamente: {mo.simular_equilibrado(total_tiempo, obreros):.2f} horas")
+    print(f"Tiempo total si cada obra solo tiene 1 obrero: {mo.simular_uno_por_obra(detalle, obreros):.2f} horas")
+    print(f"Tiempo total si los obreros trabajan en parejas: {mo.simular_en_parejas(detalle, obreros):.2f} horas")
 
     print("\nSimulación completada ✅")
 
